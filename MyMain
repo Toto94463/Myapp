@@ -12,10 +12,6 @@ public class MainActivity extends AppCompatActivity {
         Button mPlayButton = (Button) findViewById(R.id.activity_main_play_btn);
         mPlayButton.setEnabled(false);
         mNameInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged() {
-                beforeTextChanged(, , , );
-            }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
