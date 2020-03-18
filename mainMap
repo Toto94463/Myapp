@@ -1,0 +1,46 @@
+package com.example.pa8_projet;
+
+import androidx.fragment.app.FragmentActivity;
+
+import android.os.Bundle;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
+    private GoogleMap mMap;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_maps);
+        // utilisation du SupportmapFragment
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+    }
+
+
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        //mode d'affichage de la carte
+        mMap.setTrafficEnabled(true);
+        //on autorise l'api à afficher le bouton pour accéder à notre position actuelle
+        mMap.setMyLocationEnabled(true);
+
+
+        // Ajout du marqueur à Paris et on peut déplacer la caméra
+        LatLng paris = new LatLng(48.8534, 2.3488);
+        mMap.addMarker(new MarkerOptions().position(paris).title("Paris"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(paris));
+    }
+
+}
